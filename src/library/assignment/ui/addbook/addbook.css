@@ -1,0 +1,8 @@
+.Button {
+    background-color: #197602;
+    -fx-text-fill: white;
+}
+
+.Button:hover{
+    -fx-background-color: #388E3C;
+}
