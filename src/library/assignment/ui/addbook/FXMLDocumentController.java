@@ -9,7 +9,11 @@
 package library.assignment.ui.addbook;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +21,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import library.assignment.database.DatabaseHandler;
 
 public class FXMLDocumentController implements Initializable {
@@ -36,6 +42,8 @@ public class FXMLDocumentController implements Initializable {
     private Button cancelButton;
     
     DatabaseHandler databaseHandler;
+    @FXML
+    private AnchorPane rootPane;
     
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -86,6 +94,21 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void cancel(ActionEvent event) {
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
+    }
+    
+    private void checkData() {
+        String qu = "SELECT title FROM BOOK";
+        ResultSet rs = databaseHandler.execQuery(qu);
+        try {
+            while (rs.next()) {
+                String titlex = rs.getString("title");
+                System.out.println(titlex);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
