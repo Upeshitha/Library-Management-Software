@@ -1,8 +1,8 @@
-.Button {
-    background-color: #197602;
+.Save {
+    -fx-background-color: #750683;
     -fx-text-fill: white;
 }
 
-.Button:hover{
+.Save:hover{
     -fx-background-color: #388E3C;
 }
