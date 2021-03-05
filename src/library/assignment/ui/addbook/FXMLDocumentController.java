@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -48,6 +49,39 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void addBook(ActionEvent event) {
+        String bookID = id.getText();
+        String bookAuthor = author.getText();
+        String bookName = title.getText();
+        String bookPublisher = publisher.getText();
+        
+        if (bookID.isEmpty() || bookAuthor.isEmpty() || bookName.isEmpty() || 
+                bookPublisher.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter in all fields");
+            alert.showAndWait();
+            return;
+        }
+        
+        String qu = "INSERT INTO BOOK VALUES ("
+                + "'" + bookID + "',"
+                + "'" + bookName + "',"
+                + "'" + bookAuthor + "',"
+                + "'" + bookPublisher + "',"
+                + "" + "true" + ""
+                + ")";
+        System.out.println(qu);
+        if (databaseHandler.execAction(qu)) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Sucess");
+            alert.showAndWait();          
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Failed");
+            alert.showAndWait();
+        }
     }
 
     @FXML
