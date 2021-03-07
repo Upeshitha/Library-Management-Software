@@ -1,4 +1,13 @@
-package library.assistant.ui.addbook;
+/**
+* The className program implements an application that
+* 
+*
+* @author  Eranda Upeshitha
+* @version 1.0
+* @since   Mar 7, 2021
+*/
+
+package library.assignment.ui.listbook;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,11 +16,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class LibraryAssistant extends Application {
+public class BookListLoader extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("add_book.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("book_list.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -22,5 +31,5 @@ public class LibraryAssistant extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

@@ -18,7 +18,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 
-public class DatabaseHandler {
+public final class DatabaseHandler {
 
     private static DatabaseHandler handler = null;
 

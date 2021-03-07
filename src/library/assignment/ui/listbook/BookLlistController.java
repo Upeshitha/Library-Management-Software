@@ -17,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import library.assignment.database.DatabaseHandler;
+import library.assignment.ui.addbook.BookAddController;
 
 /**
  * FXML Controller class
@@ -62,7 +63,7 @@ public class BookLlistController implements Initializable {
     private void loadData() {
         //list.clear();
 
-        DatabaseHandler handler = DatabaseHandler();
+        DatabaseHandler handler = new DatabaseHandler();
         String qu = "SELECT * FROM BOOK";
         ResultSet rs = handler.execQuery(qu);
         try {
@@ -73,7 +74,7 @@ public class BookLlistController implements Initializable {
                 String publisher = rs.getString("publisher");
                 Boolean avail = rs.getBoolean("isAvail");
 
-                //list.add(new Book(titlex, id, author, publisher, avail));
+                list.add(new Book(titlex, id, author, publisher, avail));
 
             }
         } catch (SQLException ex) {
@@ -84,11 +85,11 @@ public class BookLlistController implements Initializable {
     }
     
     public static class Book{
-        private SimpleStringProperty title;
-        private SimpleStringProperty id;
-        private SimpleStringProperty author;
-        private SimpleStringProperty publisher;
-        private SimpleBooleanProperty availability;
+        private final SimpleStringProperty title;
+        private final SimpleStringProperty id;
+        private final SimpleStringProperty author;
+        private final SimpleStringProperty publisher;
+        private final SimpleBooleanProperty availability;
         
         Book(String title, String id, String author, String pub, boolean avail){
             this.title = new SimpleStringProperty(title);
