@@ -79,9 +79,9 @@ public class BookAddController implements Initializable {
                 + ")";
         System.out.println(qu);
         if (databaseHandler.execAction(qu)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
-            alert.setContentText("Please Enter in all fields");
+            alert.setContentText("saved");
             alert.showAndWait();
             //AlertMaker.showSimpleAlert("New book added", title + " has been added.");
             //clearEntries();
