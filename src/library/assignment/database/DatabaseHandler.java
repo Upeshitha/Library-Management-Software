@@ -26,11 +26,18 @@ public final class DatabaseHandler {
     private static Connection conn = null;
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             private static Statement stmt = null;
     
-    public DatabaseHandler() {
+    private DatabaseHandler() {
         createConnection();
         setupBookTable();
         setupMemberTable();
         //setupIssueTable();
+    }
+    
+    public static DatabaseHandler getInstance(){
+        if(handler==null){
+            handler = new DatabaseHandler();
+        }
+        return handler;
     }
     
     void createConnection() {
