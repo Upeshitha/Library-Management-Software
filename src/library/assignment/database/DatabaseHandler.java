@@ -33,6 +33,7 @@ public final class DatabaseHandler {
         //setupIssueTable();
     }
     
+    //DatabaseHandler method is creted for send single object
     public static DatabaseHandler getInstance(){
         if(handler==null){
             handler = new DatabaseHandler();
