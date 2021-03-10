@@ -18,8 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.assignment.ui.main.MainController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -46,7 +45,7 @@
          <right>
             <VBox prefHeight="439.0" prefWidth="134.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="150.0" prefWidth="137.0" text="Add Member">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#loadAddMember" prefHeight="150.0" prefWidth="137.0" text="Add Member">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,7 +54,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="137.0" text="Add Books">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadAddBook" prefHeight="150.0" prefWidth="137.0" text="Add Books">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -64,7 +63,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="137.0" text="View Members">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadMemberTable" prefHeight="150.0" prefWidth="137.0" text="View Members">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -73,7 +72,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="137.0" text="View Books">
+                  <Button contentDisplay="TOP" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" onAction="#loadBookTable" prefHeight="150.0" prefWidth="137.0" text="View Books">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -157,7 +156,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="572.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="Issue" />
+                                          <Button id="button" mnemonicParsing="false" stylesheets="@main.css" text="Issue" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -186,10 +185,16 @@
                                     </ListView>
                                  </center>
                                  <bottom>
-                                    <HBox alignment="CENTER" prefHeight="75.0" prefWidth="572.0" BorderPane.alignment="CENTER">
+                                    <HBox alignment="CENTER" prefHeight="86.0" prefWidth="572.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <Button alignment="CENTER" mnemonicParsing="false" text="Renew" />
-                                          <Button alignment="CENTER" layoutX="270.0" layoutY="35.0" mnemonicParsing="false" text="Submission" />
+                                          <Button id="button" alignment="CENTER" mnemonicParsing="false" stylesheets="@main.css" text="Renew">
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin></Button>
+                                          <Button id="button" alignment="CENTER" layoutX="270.0" layoutY="35.0" mnemonicParsing="false" stylesheets="@main.css" text="Submission">
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin></Button>
                                        </children>
                                     </HBox>
                                  </bottom>
