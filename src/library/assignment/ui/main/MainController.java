@@ -5,6 +5,7 @@
  */
 package library.assignment.ui.main;
 
+import com.jfoenix.effects.JFXDepthManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -26,12 +28,18 @@ import javafx.stage.StageStyle;
  */
 public class MainController implements Initializable {
 
+    @FXML
+    private HBox book_info;
+    @FXML
+    private HBox member_info;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        JFXDepthManager.setDepth(book_info, 1);
+        JFXDepthManager.setDepth(member_info, 1);
     }    
 
     @FXML
