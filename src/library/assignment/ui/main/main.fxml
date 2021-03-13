@@ -104,7 +104,7 @@
                                  <children>
                                     <HBox fx:id="book_info" alignment="CENTER" prefHeight="136.0" prefWidth="572.0" style="-fx-background-color: #e7e7e7e7;">
                                        <children>
-                                          <TextField onAction="#loadBookInfo" prefHeight="25.0" prefWidth="167.0" promptText="Enter Book ID">
+                                          <TextField fx:id="bookIDInput" onAction="#loadBookInfo" prefHeight="25.0" prefWidth="167.0" promptText="Enter Book ID">
                                              <HBox.margin>
                                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                                              </HBox.margin>
@@ -120,6 +120,11 @@
                                                    </VBox.margin>
                                                 </Text>
                                                 <Text fx:id="bookAuthor" layoutX="10.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author" textAlignment="CENTER" wrappingWidth="386.88671875">
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fx:id="bookStatus" layoutX="10.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Author" textAlignment="CENTER" wrappingWidth="386.88671875">
                                                    <VBox.margin>
                                                       <Insets top="10.0" />
                                                    </VBox.margin>

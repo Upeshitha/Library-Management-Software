@@ -8,6 +8,8 @@ package library.assignment.ui.main;
 import com.jfoenix.effects.JFXDepthManager;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,9 +19,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import library.assignment.database.DatabaseHandler;
 
 /**
  * FXML Controller class
@@ -32,6 +37,16 @@ public class MainController implements Initializable {
     private HBox book_info;
     @FXML
     private HBox member_info;
+    @FXML
+    private TextField bookIDInput;
+    @FXML
+    private Text bookName;
+    @FXML
+    private Text bookAuthor;
+    @FXML
+    private Text bookStatus;
+    
+    private DatabaseHandler databaseHandler;
 
     /**
      * Initializes the controller class.
@@ -40,6 +55,8 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         JFXDepthManager.setDepth(book_info, 1);
         JFXDepthManager.setDepth(member_info, 1);
+        
+        databaseHandler = DatabaseHandler.getInstance();
     }    
 
     @FXML
@@ -70,6 +87,36 @@ public class MainController implements Initializable {
             stage.setScene(new Scene(parent));
             stage.show();
         } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void loadBookInfo(ActionEvent event) {
+        String id = bookIDInput.getText();
+        String qu = "SELECT * FROM BOOK WHERE id = '" + id + "'";
+        ResultSet rs = databaseHandler.execQuery(qu);
+        Boolean flag = false;
+        
+        try {
+            while (rs.next()) {
+                String bName = rs.getString("title");
+                String bAuthor = rs.getString("author");
+                Boolean bStatus = rs.getBoolean("isAvail");
+
+                bookName.setText(bName);
+                bookAuthor.setText(bAuthor);
+                String status = (bStatus) ? "BOOK_AVAILABLE" : "BOOK_NOT_AVAILABLE";
+                bookStatus.setText(status);
+
+                flag = true;
+            }
+
+            if (!flag) {
+                bookName.setText("NO_SUCH_BOOK_AVAILABLE");
+            }
+
+        } catch (SQLException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
