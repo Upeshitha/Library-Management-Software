@@ -47,6 +47,12 @@ public class MainController implements Initializable {
     private Text bookStatus;
     
     private DatabaseHandler databaseHandler;
+    @FXML
+    private TextField memberIDInput;
+    @FXML
+    private Text memberName;
+    @FXML
+    private Text memberMobile;
 
     /**
      * Initializes the controller class.
@@ -93,6 +99,8 @@ public class MainController implements Initializable {
 
     @FXML
     private void loadBookInfo(ActionEvent event) {
+        clearBookCache();
+        
         String id = bookIDInput.getText();
         String qu = "SELECT * FROM BOOK WHERE id = '" + id + "'";
         ResultSet rs = databaseHandler.execQuery(qu);
@@ -114,6 +122,45 @@ public class MainController implements Initializable {
 
             if (!flag) {
                 bookName.setText("NO_SUCH_BOOK_AVAILABLE");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    void clearBookCache() {
+        bookName.setText("");
+        bookAuthor.setText("");
+        bookStatus.setText("");
+    }
+    
+    void clearMemberCache() {
+        memberName.setText("");
+        memberMobile.setText("");
+    }
+
+    @FXML
+    private void loadMemberInfo(ActionEvent event) {
+        clearMemberCache();
+        
+        String id = memberIDInput.getText();
+        String qu = "SELECT * FROM MEMBER WHERE id = '" + id + "'";
+        ResultSet rs = databaseHandler.execQuery(qu);
+        Boolean flag = false;
+        try {
+            while (rs.next()) {
+                String mName = rs.getString("name");
+                String mMobile = rs.getString("mobile");
+
+                memberName.setText(mName);
+                memberMobile.setText(mMobile);
+
+                flag = true;
+            }
+
+            if (!flag) {
+                memberName.setText("NO_SUCH_MEMBER_AVAILABLE");
             }
 
         } catch (SQLException ex) {
