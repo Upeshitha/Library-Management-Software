@@ -30,7 +30,9 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
         
-        DatabaseHandler.getInstance();
+        new Thread(() -> {
+            DatabaseHandler.getInstance();
+        }).start();
     }
 
     public static void main(String[] args) {

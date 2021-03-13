@@ -167,7 +167,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="140.0" prefWidth="572.0">
                                        <children>
-                                          <Button id="button" mnemonicParsing="false" stylesheets="@main.css" text="Issue" />
+                                          <Button id="button" mnemonicParsing="false" onAction="#loadIssueOperation" stylesheets="@main.css" text="Issue" />
                                        </children>
                                     </HBox>
                                  </children>
