@@ -182,7 +182,7 @@
                            <children>
                               <BorderPane layoutX="47.0" layoutY="37.0" prefHeight="410.0" prefWidth="572.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <top>
-                                    <TextField prefHeight="25.0" prefWidth="517.0" promptText="Enter Book ID" BorderPane.alignment="CENTER">
+                                    <TextField fx:id="bookID" onAction="#loadBookInfo2" prefHeight="25.0" prefWidth="517.0" promptText="Enter Book ID" BorderPane.alignment="CENTER">
                                        <BorderPane.margin>
                                           <Insets left="130.0" right="130.0" top="10.0" />
                                        </BorderPane.margin>

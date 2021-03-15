@@ -58,6 +58,8 @@ public class MainController implements Initializable {
     private Text memberName;
     @FXML
     private Text memberMobile;
+    @FXML
+    private TextField bookID;
 
     /**
      * Initializes the controller class.
@@ -212,6 +214,13 @@ public class MainController implements Initializable {
                 alert1.setHeaderText(null);
                 alert1.setContentText("Issue Operation Failed");
         }
+    }
+
+    @FXML
+    private void loadBookInfo2(ActionEvent event) {
+        String id = bookID.getText();
+        String qu = "SELECT * FROM ISSUE WHERE bookID = '" + id + "'";
+        ResultSet rs =  databaseHandler.execQuery(qu);
     }
     
 }
