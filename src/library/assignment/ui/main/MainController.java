@@ -229,14 +229,14 @@ public class MainController implements Initializable {
         String id = bookID.getText();
         String qu = "SELECT * FROM ISSUE WHERE bookID = '" + id + "'";
         ResultSet rs = databaseHandler.execQuery(qu);
-
-        try {
-            while (rs.next()) {
+        
+        try {           
+            while (rs.next()) {               
                 String mBookID = id;
                 String mMemberID = rs.getString("memberID");
                 Timestamp mIssueTime = rs.getTimestamp("issueTime");
                 int mRenewCount = rs.getInt("renew_count");
-
+                           
                 issueData.add("Issue Date and Time :" + mIssueTime.toGMTString());
                 issueData.add("Renew Count :" + mRenewCount);
                 issueData.add("Book Information:-");
@@ -258,6 +258,8 @@ public class MainController implements Initializable {
                     issueData.add("Mobile :" +r1.getString("mobile"));
                     issueData.add("Email :" +r1.getString("email"));
                 }
+                
+                System.out.println("done");
             }
         } catch (SQLException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
