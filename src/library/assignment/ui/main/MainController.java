@@ -66,6 +66,8 @@ public class MainController implements Initializable {
     private TextField bookID;
     @FXML
     private ListView<String> issueDataList;
+    
+    Boolean isReadyForSubmission = false;
 
     /**
      * Initializes the controller class.
@@ -225,6 +227,7 @@ public class MainController implements Initializable {
     @FXML
     private void loadBookInfo2(ActionEvent event) {
         ObservableList<String> issueData = FXCollections.observableArrayList();
+        isReadyForSubmission = false;
 
         String id = bookID.getText();
         String qu = "SELECT * FROM ISSUE WHERE bookID = '" + id + "'";
@@ -259,7 +262,7 @@ public class MainController implements Initializable {
                     issueData.add("Email :" +r1.getString("email"));
                 }
                 
-                System.out.println("done");
+                isReadyForSubmission = true;
             }
         } catch (SQLException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -268,4 +271,32 @@ public class MainController implements Initializable {
         issueDataList.getItems().setAll(issueData);
     }
 
+    @FXML
+    private void loadSubmissionOp(ActionEvent event) {
+        if (!isReadyForSubmission){
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Failed");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Please select a book to submit");
+            alert1.showAndWait();
+            return; 
+        }
+        String id = bookID.getText();
+        String ac1 = "DELETE FROM ISSUE WHERE BOOKID = '" + id + "'";
+        String ac2 = "UPDATE BOOK SET ISAVAIL = TRUE WHERE ID = '" + id + "'";
+        
+        if (databaseHandler.execAction(ac1) && databaseHandler.execAction(ac2)) {
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setTitle("Success");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Book has been submitted");
+            alert1.showAndWait();
+        } else {
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Failed");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Submission has been Failed");
+            alert1.showAndWait();
+        }
+    }
 }
