@@ -191,7 +191,7 @@
                                  <bottom>
                                     <HBox alignment="CENTER" prefHeight="86.0" prefWidth="572.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <Button id="button" alignment="CENTER" mnemonicParsing="false" stylesheets="@main.css" text="Renew">
+                                          <Button id="button" alignment="CENTER" mnemonicParsing="false" onAction="#loadRenewOp" stylesheets="@main.css" text="Renew">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
                                              </HBox.margin></Button>
